@@ -1,27 +1,23 @@
-import React, { useEffect, createContext, useState } from "react";
+import React, { createContext, useState } from "react";
 import { food_list } from "../../assets/assets";
 
 // Define type for cartItems
-type CartItems = { [itemId: string]: number };
 
+export type food_item = {
+  _id: string;
+  name: string;
+  image: string;
+  price: number;
+  description: string;
+  category: string;
+};
 export const StoreContext = createContext<{
-  food_list: {
-    _id: string;
-    name: string;
-    image: string;
-    price: number;
-    description: string;
-    category: string;
-  }[];
-  cartItems: CartItems;
-  setCartItems: React.Dispatch<React.SetStateAction<CartItems>>;
-  addToCart: (itemId: string) => void;
+  cartItems: Array<food_item>;
+  addToCart: (item: food_item) => void;
   removeFromCart: (itemId: string) => void;
 }>({
-  food_list: [],
-  cartItems: {},
-  setCartItems: () => {},
-  addToCart: (itemId: string) => {},
+  cartItems: [],
+  addToCart: (item: food_item) => {},
   removeFromCart: (itemId: string) => {},
 });
 
@@ -30,34 +26,24 @@ interface StoreContextProviderProps {
 }
 
 const StoreContextProvider: React.FC<StoreContextProviderProps> = (props) => {
-  const [cartItems, setCartItems] = useState<CartItems>({});
+  const [cartItems, setCartItems] = useState<Array<food_item>>([]);
 
-  const addToCart = (itemId: string) => {
-    if (!cartItems[itemId]) {
-      setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
-    } else {
-      setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
-    }
+  const addToCart = (item: food_item) => {
+    setCartItems((prev) => [...prev, item]);
   };
 
   const removeFromCart = (itemId: string) => {
-    if (cartItems[itemId] > 1) {
-      setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
-    } else {
-      const updatedCart = { ...cartItems };
-      delete updatedCart[itemId];
-      setCartItems(updatedCart);
-    }
+    // if (cartItems[itemId] > 1) {
+    //   setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+    // } else {
+    //   const updatedCart = { ...cartItems };
+    //   delete updatedCart[itemId];
+    //   setCartItems(updatedCart);
+    // }
   };
 
-  useEffect(() => {
-    console.log(cartItems);
-  }, [cartItems]);
-
   const contextValue = {
-    food_list,
     cartItems,
-    setCartItems,
     addToCart,
     removeFromCart,
   };

@@ -17,7 +17,7 @@ const DisplayItem = () => {
               return (
                 <FoodItem
                   key={index}
-                  id={item._id}
+                  _id={item._id}
                   name={item.name}
                   description={item.description}
                   price={item.price}

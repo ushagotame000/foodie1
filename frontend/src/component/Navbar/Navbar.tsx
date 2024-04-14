@@ -41,7 +41,7 @@ const Navbar: React.FC<NavbarProps> = ({ setShowLogin }) => {
               className={
                 menu === "Menu"
                   ? "active border-b-2 border-solid border-gray-400 cursor-pointer"
-                  : ""
+                  : "asd"
               }
             >
               Menu

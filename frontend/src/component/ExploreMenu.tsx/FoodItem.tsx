@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { assets } from "../../assets/assets";
 import ratingStars from "../../assets/rating_starts.png"; // Assuming the rating starts image is stored here
+import { StoreContext, food_item } from "../Content/StoreContext";
 
 interface FoodItemProps {
-  id: string;
+  _id: string;
   name: string;
   price: number;
   description: string;
@@ -11,14 +12,18 @@ interface FoodItemProps {
 }
 
 const FoodItem: React.FC<FoodItemProps> = ({
-  id,
+  _id,
   name,
   price,
   description,
   image,
 }) => {
   const [itemCount, setItemCount] = useState(0);
-
+  const { addToCart } = useContext(StoreContext);
+  const handleClick = () => {
+    addToCart({ _id, name, price, description, image } as food_item);
+    setItemCount((prev) => prev + 1);
+  };
   return (
     <div>
       <div className="food-item w-auto m-auto ease-in-out rounded-md hover:opacity-75 p-1">
@@ -31,7 +36,7 @@ const FoodItem: React.FC<FoodItemProps> = ({
           {!itemCount ? (
             <img
               className="add absolute w-10  ml-60 cursor-pointer rounded-lg bottom-0  left-5"
-              onClick={() => setItemCount((prev) => prev + 1)}
+              onClick={handleClick}
               src={assets.add_icon_white} // Assuming this is your add icon
               alt="Add"
             />

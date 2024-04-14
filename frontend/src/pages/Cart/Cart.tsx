@@ -1,11 +1,19 @@
 // import React, { useContext } from "react";
 // import { StoreContext } from "../../component/Content/StoreContext";
 // import { food_list } from "../../assets/assets";
+import { useContext, useEffect, useState } from "react";
 import Footer from "../../component/Footer/Footer";
 import { useNavigate } from "react-router-dom";
+import { StoreContext } from "../../component/Content/StoreContext";
+import { food_list } from "../../assets/assets";
 
 const Cart = () => {
-  // const { cartItems } = useContext(StoreContext);
+  const { cartItems } = useContext(StoreContext);
+  let sum = 0;
+  for (let i = 0; i < cartItems.length; i++) {
+    sum = sum + cartItems[i].price;
+  }
+  console.log(cartItems);
   const navigate = useNavigate();
   return (
     <div>
@@ -21,19 +29,15 @@ const Cart = () => {
           </div>
           <br />
           <hr />
-          {/* {food_list.map((item, index) => {
-            if (cartItems[item._id] > 0) {
-              return (
-                <div className="cart-item-title" key={index}>
-                  <img src={item.image} alt="" />
-                  <p>{item.name}</p>
-                  <p>{cartItems[item._id]}</p>
-                  <p>{item.price * cartItems[item._id]}</p>
-                  <p>X</p>
-                </div>
-              );
-            }
-          })} */}
+          {cartItems?.map((item, index) => (
+            <div className="cart-item-title" key={index}>
+              <img src={item.image} alt="" />
+              <p>{item.name}</p>
+              <p>{item.description}</p>
+              <p>{item.price}</p>
+              <p>X</p>
+            </div>
+          ))}
         </div>
 
         <div className="cart-bottom mt-16 flex  flex-wrap justify-between gap-5 md:flex-wrap-reverse">
@@ -53,7 +57,7 @@ const Cart = () => {
               <hr className="mx-3 my-0 " />
               <div className="cart-total-details flex justify-between text-gray-600">
                 <b>Total</b>
-                <b>{0}</b>
+                <b>{sum}</b>
               </div>
             </div>
 
