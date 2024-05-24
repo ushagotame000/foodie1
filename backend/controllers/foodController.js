@@ -29,6 +29,7 @@
 
 import foodModel from "../models/foodModel.js";
 import fs from "fs";
+import foodRouter from "../routes/foodRoute.js";
 
 // Add food item
 const addFood = async (req, res) => {
@@ -51,4 +52,30 @@ const addFood = async (req, res) => {
   }
 };
 
-export { addFood };
+//list all food list
+
+const listFood = async (req, res) => {
+  try {
+    const foods = await foodModel.find({});
+    res.json({ success: true, data: foods });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: "error" });
+  }
+};
+
+// remove item list
+
+const removeFood = async (req, res) => {
+  try {
+    const food = await foodModel.findById(req.body.id);
+    fs.unlink(`uploads/${food.image}`, () => {});
+    await foodModel.findByIdAndDelete(req.body.id);
+    res.json({ sucess: true, message: "Food Deleted" });
+  } catch (error) {
+    console.log(error);
+    res.json({ sucess: false, message: "error" });
+  }
+};
+
+export { addFood, listFood, removeFood };
