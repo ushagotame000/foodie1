@@ -30,11 +30,14 @@ const Cart = () => {
           <br />
           <hr />
           {cartItems?.map((item, index) => (
-            <div className="cart-item-title" key={index}>
-              <img src={item.image} alt="" />
+            <div
+              className="cart-item-title flex flex-row gap-14 text-lg text-gray-700 py-4"
+              key={index}
+            >
+              <img src={item.image} alt="" className="w-28 rounded-2xl" />
               <p>{item.name}</p>
-              <p>{item.description}</p>
               <p>{item.price}</p>
+              {/* <p>{item.{price}*{}}</p> */}
               <p>X</p>
             </div>
           ))}

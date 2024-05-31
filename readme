@@ -1,0 +1,4 @@
+
+post: check on thunderclient
+http://localhost:5000/api/food/remove 
+npm

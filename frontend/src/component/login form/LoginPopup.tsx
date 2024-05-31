@@ -69,7 +69,7 @@ const LoginPopup: React.FC<LoginPopupProps> = ({ setShowLogin }) => {
             <span
               onClick={() => setCurrState("Login")}
               className="text-orange-500 font-semibold cursor-pointer font-sans underline transform hover:translate-x-3 transition duration-300 ease-in-out"
-            > 
+            >
               Login here
             </span>
           </p>
