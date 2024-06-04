@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./component/Navbar.jsx/Navbar";
 import Sidebar from "./component/Sidebar/Sidebar";
 import Add from "./component/Orders/Add";
+import List from "./component/Orders/List";
 import Orders from "./component/Orders/Orders";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -15,7 +16,7 @@ const App = () => {
           <Sidebar />
           <Routes>
             <Route path="/Add" element={<Add />} />
-            <Route path="/Sidebar" element={<Sidebar />} />
+            <Route path="/List" element={<List />} />
             <Route path="/Orders" element={<Orders />} />
           </Routes>
         </div>
