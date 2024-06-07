@@ -14,7 +14,7 @@ const Sidebar = () => {
           <p className=" hidden md:block">Add Items</p>
         </NavLink>
         <NavLink
-          to="/Sidebar"
+          to="/List"
           className="option flex items-center gap-2  border-y-2  border-neutral-300  px-2 py-2 rounded-sm cursor-pointer "
         >
           <img src={assets.order_icon} alt="" />

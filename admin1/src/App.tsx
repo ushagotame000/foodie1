@@ -5,11 +5,14 @@ import Add from "./component/Orders/Add";
 import List from "./component/Orders/List";
 import Orders from "./component/Orders/Orders";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <div className="app w-5/6 mx-auto">
+      <div className="app ">
+        <ToastContainer />
         <Navbar />
         <hr className="border-none h-1 bg-gray-300" />
         <div className="app-content flex">
